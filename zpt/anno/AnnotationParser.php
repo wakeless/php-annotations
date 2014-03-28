@@ -55,21 +55,12 @@ class AnnotationParser {
 
 			$val = true;
 			if (isset($anno[2])) {
-				$hasParams = preg_match_all(self::PARAMETER_REGEX, $anno[2], $params,
-					PREG_SET_ORDER);
-				if ($hasParams) {
-					$val = array();
-					foreach ($params AS $param) {
-						$val[$param[1]] = self::_parseValue($param[2]);
-					}
-				} else {
-					$val = trim($anno[2]);
-					if ($val == '') {
-						$val = true;
-					} else {
-						$val = self::_parseValue($val);
-					}
-				}
+        $val = trim($anno[2]);
+        if ($val == '') {
+          $val = true;
+        } else {
+          $val = self::_parseValue($val);
+        }
 			}
 
 			if (isset($annotations[$annoName])) {
